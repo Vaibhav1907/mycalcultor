@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, black, #3a4452);
+        }
+
+        .calculator {
+            border: 1px solid #717377;
+            padding: 20px;
+            border-radius: 16px;
+            background: transparent;
+            box-shadow: 0px 3px 15px rgba(113, 115, 111, 0.5);
+        }
+
+        input {
+            width: 320px;
+            border: none;
+            padding: 24px;
+            margin: 10px;
+            background: transparent;
+            box-shadow: 0px 1px 20px 0px rgba(117, 210, 226, 0.5);
+            font-size: 40px;
+            cursor: pointer;
+            color: white;
+            text-align: end;
+        }
+
+        input::placeholder {
+            color: #fff;
+        }
+
+        button {
+            border: none;
+            width: 60px;
+            height: 60px;
+            margin: 10px;
+            background: transparent;
+            color: #ffffff;
+            font-size: 20px;
+            box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .equals {
+            background-color: #fb7c14;
+        }
+
+        .operator {
+            text-shadow: 1px 1px 15px aquamarine;
+            color: rgb(60, 243, 234);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <input type="text" readonly name="" id="inputbox" placeholder="0">
+        <div>
+            <button class="operator">C</button>
+            <button class="operator">D</button>
+            <button class="operator">%</button>
+            <button class="operator">/</button>
+        </div>
+        <div>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button class="operator">*</button>
+        </div>
+        <div>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button class="operator">-</button>
+        </div>
+        <div>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button class="operator">+</button>
+        </div>
+        <div>
+            <button>00</button>
+            <button>0</button>
+            <button class="operator">.</button>
+            <button class="equals">=</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let display = document.querySelector('#inputbox');
+            let buttons = document.querySelectorAll('button');
+            let string = '';
+          
+
+            buttons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    if (button.innerText === 'AC') {
+                        string = '';
+                    } else if (button.innerText === 'DEL') {
+                        string = string.slice(0, -1);
+                    } else if (button.innerText === '=') {
+                        try {
+                            string = eval(string);
+                        } catch (error) {
+                        document.querySelector('.equals').disable=false
+                        }
+                    } else {
+                        string += button.innerText;
+                        document.querySelector('.equals').disable=true
+                    }
+                    display.value = string;
+                });
+            });
+            display.addEventListener('keypress', function(e){
+                if(e.key==='Enter'){
+                    buttons.forEach( function(button) {
+                        button.click();
+                      
+                    });
+                }
+            });
+          
+        });
+    </script>
+</body>
+
+</html>

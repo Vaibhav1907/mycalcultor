@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+        body{
+            background: #000;
+            color: #68ed0f;
+        }
+        h1{
+            font-size: 15vw;
+            position: fixed;
+            left: 36%;
+        }
+    </style>
+</head>
+<body>
+   <center> <h1 id="count"></h1></center>
+    
+</body>
+<script>
+    let count = document.getElementById("count");
+    // let count2 = document.getElementById("count2");
+     
+    let ms = 0;
+    let s=0;
+    // let m = 0
+    let a = setInterval(() => {
+        count.innerHTML= `${s}:${ms}`
+    
+        if (ms==59) {
+            ms=0
+            s++
+        }        
+        ms++;
+    }, 100);
+
+    
+
+</script>
+</html>
